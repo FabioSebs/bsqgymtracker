@@ -1,11 +1,19 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Hero from '../components/Hero'
+import { useEffect } from 'react'
 
+interface Props {
+  data: Count
+}
 
-const Home: NextPage = () => {
+type Count = {
+  count: number
+}
+
+const Home: NextPage<Props> = ({ data }) => {
   return (
     <div className={styles.container}>
       {/* HEAD */}
@@ -16,11 +24,22 @@ const Home: NextPage = () => {
       </Head>
 
       {/* HERO */}
-      <Hero title='BSQ Gym Tracker' />
-
-      
+      <Hero gymCount={data.count} />
     </div>
   )
+}
+
+// Server Side Rendering
+export const getServerSideProps: GetServerSideProps = async () => {
+  // Request
+  const res = await fetch("http://localhost:8080/count")
+  const data = await res.json() 
+
+  return {
+    props: {
+      data
+    }
+  }
 }
 
 export default Home

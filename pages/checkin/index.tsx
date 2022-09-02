@@ -5,20 +5,34 @@ import Popout from '../../components/Popout'
 
 const index: NextPage = () => {
     const [show, setShow] = useState<boolean>(false);
+    const [status, setStatus] = useState<number>(0);
 
-    const toggleShow = () => {
-        setShow(true)
-        setTimeout(() => {
-            setShow(false)
-        }, 2000)
+    const handleCheck = async (flag: boolean) => {
+        // Request
+        try {
+            if (flag) {
+                const resp = await fetch("http://localhost:8080/checkin")
+                resp.status == 400 ? setStatus(1) : setStatus(0)
+    
+            } else {
+                const resp = await fetch("http://localhost:8080/checkout")
+                resp.status == 400 ? setStatus(2) : setStatus(0)
+            }
+            setShow(true)
+            setTimeout(() => {
+                setShow(false)
+            }, 3000)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <div className={styles.checkinDiv}>
-            {show && <Popout show={show}/>}
+            {show && <Popout show={show} status={status}/>}
 
-            <button onClick={_ => toggleShow()}>Checkin</button>
-            <button onClick={_ => toggleShow()}>Checkout</button>
+            <button onClick={_ => handleCheck(true)}>Checkin</button>
+            <button onClick={_ => handleCheck(false)}>Checkout</button>
         </div>
     )
 }

@@ -1,14 +1,33 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import styles from "../styles/Popout.module.css"
 import {ProgressBar} from "react-loader-spinner"
 
 interface Props {
     show: boolean
+    status : number
 }
 
-const Popout: FunctionComponent<Props> = ({ show }) => {
+const messages = {
+    0 : "Success!",
+    1 : "Gym is Full",
+    2 : "You didn't checkin"
+}
+
+const Popout: FunctionComponent<Props> = ({ show, status}) => {
     const [finished, setFinished] = useState<boolean>(false);
     const [dots, setDots] = useState<string>("")
+    const [message, setMessage] = useState<string>(messages[0])
+
+    useEffect(()=>{
+        const errArray = Object.values(messages)
+        setMessage(errArray[status])
+    }, [status])
+
+    useEffect(()=> {
+        setTimeout(() => {
+            setFinished(!finished)
+        }, 2000);
+    }, [show])
 
     const loadingMessage = () => {
         return (
@@ -21,7 +40,7 @@ const Popout: FunctionComponent<Props> = ({ show }) => {
     const successMessage = () => {
         return (
             <>
-                <h2>Success!</h2>
+                <h2>{message}</h2>
             </>
         )
     }
