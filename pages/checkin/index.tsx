@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import styles from "../../styles/Checkin.module.css"
 import Popout from '../../components/Popout'
 
+
 const index: NextPage = () => {
     const [show, setShow] = useState<boolean>(false);
     const [status, setStatus] = useState<number>(0);
@@ -11,11 +12,11 @@ const index: NextPage = () => {
         // Request
         try {
             if (flag) {
-                const resp = await fetch("http://localhost:8080/checkin")
+                const resp = await fetch("http://bsqbackend:8080/checkin")
                 resp.status == 400 ? setStatus(1) : setStatus(0)
     
             } else {
-                const resp = await fetch("http://localhost:8080/checkout")
+                const resp = await fetch("http://bsqbackend:8080/checkout")
                 resp.status == 400 ? setStatus(2) : setStatus(0)
             }
             setShow(true)

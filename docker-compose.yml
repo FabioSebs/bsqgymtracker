@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  bsqfrontend:
+    container_name: bsqfrontend
+    image: fabrzy/bsqfrontend:v3
+    build:
+      context: ./
+
+    ports:
+      - "3000:3000"
+    
+    networks:
+      - bsqgymnetwork
+
+  bsqbackend:
+    container_name: bsqbackend
+    image: fabrzy/bsqbackend:v2
+    depends_on:
+      - bsqdb
+    
+    links:
+      - bsqdb
+
+    restart: on-failure
+
+    ports:
+      - "8080:8080"
+
+    build: 
+      context: backend/
+
+    networks:
+      - bsqgymnetwork
+
+  bsqdb:
+    image: redis:latest
+
+    container_name: bsqdb
+
+    ports:
+      - "6379:6379"
+
+    networks:
+      - bsqgymnetwork
+
+networks:
+  bsqgymnetwork:
+    driver: bridge
