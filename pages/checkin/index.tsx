@@ -12,11 +12,11 @@ const index: NextPage = () => {
         // Request
         try {
             if (flag) {
-                const resp = await fetch("http://bsqbackend:8080/checkin")
+                const resp = await fetch("https://bsqgymdb.herokuapp.com/checkin")
                 resp.status == 400 ? setStatus(1) : setStatus(0)
     
             } else {
-                const resp = await fetch("http://bsqbackend:8080/checkout")
+                const resp = await fetch("https://bsqgymdb.herokuapp.com/checkout")
                 resp.status == 400 ? setStatus(2) : setStatus(0)
             }
             setShow(true)

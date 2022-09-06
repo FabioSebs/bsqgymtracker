@@ -32,7 +32,7 @@ const Home: NextPage<Props> = ({ data }) => {
 // Server Side Rendering
 export const getServerSideProps: GetServerSideProps = async () => {
   // Request
-  const res = await fetch("http://bsqbackend:8080/count")
+  const res = await fetch("https://bsqgymdb.herokuapp.com/count")
   const data = await res.json() 
 
   return {
