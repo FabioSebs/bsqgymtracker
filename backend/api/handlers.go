@@ -19,8 +19,7 @@ func Checkin(c *gin.Context) {
 	rdb := db.CreateRedisClient()
 
 	// First time someone checks in for the day
-	check, err := rdb.Exists(ctx, "people").Result()
-	ErrorCheck(err)
+	check, _ := rdb.Exists(ctx, "people").Result()
 
 	if check != 1 {
 		rdb.Set(ctx, "people", count, 0)
