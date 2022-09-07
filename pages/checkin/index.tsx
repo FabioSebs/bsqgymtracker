@@ -13,9 +13,13 @@ const index: NextPage = () => {
 
     // Check if they have checkedin
     useEffect(()=>{
-        cookies.checkedin ? Router.back() : undefined
+        cookies.checkedin ? redirect() : undefined
     },[])
 
+    const redirect = () => {
+        Router.back()
+        window.location.href = "https://bsqgymtracker.vercel.app/"
+    }
 
     const handleCheck = async (flag: boolean) => {
         // Request

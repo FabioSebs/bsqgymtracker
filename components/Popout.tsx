@@ -27,10 +27,15 @@ const Popout: FunctionComponent<Props> = ({ show, status }) => {
         setTimeout(() => {
             setFinished(!finished)
 
-            Router.back()
+            redirect()
 
         }, 2000);
     }, [show])
+
+    const redirect = () => {
+        Router.back()
+        window.location.href = "https://bsqgymtracker.vercel.app/"
+    }
 
     const loadingMessage = () => {
         return (
