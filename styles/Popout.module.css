@@ -17,4 +17,5 @@
     align-items: center;
     border-radius: 20px;
     font-family: 'Russo One', sans-serif;
+    z-index: 6;
 }

@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
 .checkinDiv{
-    background-color: blue;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -9,17 +10,31 @@
     
 }
 
+.checkinDiv:not(:last-child) {
+    z-index: 5;
+}
+
+.checkinBG {
+    z-index: -1;
+    filter: blur(10px);
+}
+
 .checkinDiv button {
     text-transform: uppercase;
     border: none;
     padding: 3rem 4.5rem;
     border-radius: 50px;
     color: gray;
+    z-index: 5;
+    outline: 5px solid black;
+    font-family: 'Carter One', cursive;
+    font-size: larger;
 }
 
 .checkinDiv button:hover {
     color: black;
     cursor: pointer;
     transform: scale(1.2);
+    outline: 10px solid black;
     transition: all .5s ease;
 }

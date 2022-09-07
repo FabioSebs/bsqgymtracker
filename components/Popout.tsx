@@ -10,7 +10,6 @@ interface Props {
 const messages = {
     0 : "Success!",
     1 : "Gym is Full",
-    2 : "You didn't checkin"
 }
 
 const Popout: FunctionComponent<Props> = ({ show, status}) => {

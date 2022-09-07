@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Montserrat:wght@300&display=swap');
+
 .heroDiv {
-    background-color: blue;
+    height: 100vh;
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,13 +12,27 @@
     height: 100vh;
 }
 
+.heroDiv h1 {
+    font-size: 50px;
+    color: black;
+    text-shadow: 2px 2px rgb(255, 188, 64);
+    font-family: 'Carter One', cursive;
+}
+
+.heroBG {
+    filter: blur(5px);
+    z-index: -4;
+}
+
 .heroDiv h2 {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .heroDiv h3 {
     color: red;
+    font-family: 'Carter One', cursive;
 }
 
 .iconDiv {

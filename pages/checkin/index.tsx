@@ -1,39 +1,46 @@
-import { NextPage } from 'next'
-import React, { useState } from 'react'
+import { NextPage, } from 'next'
+import Image from 'next/image'
+import React, { useState, useEffect } from 'react'
 import styles from "../../styles/Checkin.module.css"
 import Popout from '../../components/Popout'
-
+import { useCookies } from 'react-cookie';
+import Router from "next/router";
 
 const index: NextPage = () => {
+    const [cookies, setCookie] = useCookies(['checkedin']);
     const [show, setShow] = useState<boolean>(false);
     const [status, setStatus] = useState<number>(0);
+
+    // Check if they have checkedin
+    useEffect(()=>{
+        cookies.checkedin ? Router.back() : undefined
+    },[])
+
 
     const handleCheck = async (flag: boolean) => {
         // Request
         try {
-            if (flag) {
-                const resp = await fetch("https://bsqgymdb.herokuapp.com/checkin")
-                resp.status == 400 ? setStatus(1) : setStatus(0)
-    
-            } else {
-                const resp = await fetch("https://bsqgymdb.herokuapp.com/checkout")
-                resp.status == 400 ? setStatus(2) : setStatus(0)
-            }
-            setShow(true)
+            const resp = await fetch("https://bsqgymdb.herokuapp.com/checkin")
+            const halfday = new Date().getTime();
+            resp.status == 400 ? setStatus(1) : setStatus(0)
+            setShow(flag)
+
+            setCookie('checkedin', true, { path: '/', expires: new Date(halfday + 12 * 60 * 60 * 1000)});
             setTimeout(() => {
-                setShow(false)
+                setShow(!flag)
             }, 3000)
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error)
         }
     }
 
     return (
         <div className={styles.checkinDiv}>
-            {show && <Popout show={show} status={status}/>}
+            {show && <Popout show={show} status={status} />}
 
             <button onClick={_ => handleCheck(true)}>Checkin</button>
-            <button onClick={_ => handleCheck(false)}>Checkout</button>
+            <Image className={styles.checkinBG} src="/bg.PNG" layout='fill' />
         </div>
     )
 }
