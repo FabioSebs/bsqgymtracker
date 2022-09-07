@@ -30,7 +30,7 @@ const Hero: FunctionComponent<Props> = ({ gymCount }) => {
 
             <h2>{gymCount} People</h2>
             <h3>{available} spaces left!</h3>
-            <Image className={styles.heroBG} src="/bg.PNG" layout='fill'/>
+            <Image className={styles.heroBG} src="/bg.PNG" layout='fill' />
         </div>
     )
 }
