@@ -49,7 +49,7 @@
 
 @media all and (max-width: 800px) {
     .iconDiv {
-        margin: auto;
+        margin: 0 auto;
         position: relative;
         width: 300px !important;
         height: 150px !important;
