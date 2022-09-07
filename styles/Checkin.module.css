@@ -31,9 +31,8 @@
 }
 
 .checkinDiv button:hover {
-    color: black;
+    color: white;
     cursor: pointer;
     transform: scale(1.2);
-    outline: 10px solid black;
     transition: all .5s ease;
 }
