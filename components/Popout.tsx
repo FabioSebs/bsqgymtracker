@@ -1,30 +1,34 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import styles from "../styles/Popout.module.css"
-import {ProgressBar} from "react-loader-spinner"
+import { ProgressBar } from "react-loader-spinner"
+import Router from "next/router";
 
 interface Props {
     show: boolean
-    status : number
+    status: number
 }
 
 const messages = {
-    0 : "Success!",
-    1 : "Gym is Full",
+    0: "Success!",
+    1: "Gym is Full",
 }
 
-const Popout: FunctionComponent<Props> = ({ show, status}) => {
+const Popout: FunctionComponent<Props> = ({ show, status }) => {
     const [finished, setFinished] = useState<boolean>(false);
     const [dots, setDots] = useState<string>("")
     const [message, setMessage] = useState<string>(messages[0])
 
-    useEffect(()=>{
+    useEffect(() => {
         const errArray = Object.values(messages)
         setMessage(errArray[status])
     }, [status])
 
-    useEffect(()=> {
+    useEffect(() => {
         setTimeout(() => {
             setFinished(!finished)
+
+            Router.back()
+
         }, 2000);
     }, [show])
 
@@ -45,7 +49,7 @@ const Popout: FunctionComponent<Props> = ({ show, status}) => {
     }
 
     const addDot = () => {
-        if (dots.length==3) {
+        if (dots.length == 3) {
             setDots('')
             return
         }
@@ -55,7 +59,7 @@ const Popout: FunctionComponent<Props> = ({ show, status}) => {
 
 
 
-    setInterval(addDot,400)
+    setInterval(addDot, 400)
 
     const popout = () => {
         return (
