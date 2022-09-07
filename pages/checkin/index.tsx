@@ -24,10 +24,12 @@ const index: NextPage = () => {
             const halfday = new Date().getTime();
             resp.status == 400 ? setStatus(1) : setStatus(0)
             setShow(flag)
-
             setCookie('checkedin', true, { path: '/', expires: new Date(halfday + 12 * 60 * 60 * 1000)});
             setTimeout(() => {
                 setShow(!flag)
+                setTimeout(()=>{
+                    Router.back()
+                },1000)
             }, 3000)
         }
         catch (error) {

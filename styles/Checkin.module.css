@@ -21,13 +21,12 @@
 
 .checkinDiv button {
     text-transform: uppercase;
+    background-color: black;
     border: none;
     padding: 3rem 4.5rem;
     border-radius: 50px;
-    color: gray;
+    color: white;
     z-index: 5;
-    outline: 5px solid black;
-    font-family: 'Carter One', cursive;
     font-size: larger;
 }
 

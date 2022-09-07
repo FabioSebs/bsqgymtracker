@@ -46,3 +46,29 @@
     height: 10px;
     width: 10px;
 }
+
+@media all and (max-width: 800px) {
+    .iconDiv {
+        margin: auto;
+        position: relative;
+        width: 300px !important;
+        height: 150px !important;
+    }
+
+    .heroDiv h1 {
+        font-size: 30px !important;
+        color: black;
+        text-shadow: 2px 2px rgb(255, 188, 64);
+        font-family: 'Carter One', cursive;
+    }
+
+    .heroDiv h2 {
+        font-size: 30px !important;
+        margin-bottom: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .heroDiv h3 {
+        font-size: 20px !important;
+    }
+}
